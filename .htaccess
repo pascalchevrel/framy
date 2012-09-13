@@ -1,5 +1,13 @@
-# rewrite all requests to the front controller
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^.*$ init.php [PT,L,QSA]
+# Rewrite all requests to the front controller
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # redirect home page to not treat it as a valid directory
+  RewriteRule ^$ /inc/init.php [L,QSA]
+
+  # existing files and folders are not redirected
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule (.*) /inc/init.php [L,QSA]
+</IfModule>
