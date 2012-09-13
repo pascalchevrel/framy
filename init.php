@@ -11,7 +11,7 @@ if ($path == '/init.php') {
 
 // Don't process non-PHP files
 $file_ext = pathinfo($path);
-if ($file_ext['extension'] != 'php' && $file_ext['extension'] != null) {
+if (isset($file_ext['extension']) && $file_ext['extension'] != 'php') {
     return false;
 }
 
