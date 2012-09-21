@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * Note: 
+ * We use temporary variables that we later unset only for compatibility with PHP 5.3
+ * in PHP 5.4+ we could use direcly returned array values from the function, /ex:
+ * parse_url($_SERVER['REQUEST_URI'])['path']
+ *
+ */
+
 $url  = parse_url($_SERVER['REQUEST_URI']);
 $file = pathinfo($url['path']);
 
